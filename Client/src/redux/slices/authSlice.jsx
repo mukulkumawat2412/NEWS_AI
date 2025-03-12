@@ -34,7 +34,7 @@ export const Register = createAsyncThunk("/signup", async (data, { rejectWithVal
 
 export const login = createAsyncThunk("/login", async (loginData, { rejectWithValue }) => {
     try {
-        const res = await axios.post("https://news-ai-chi.vercel.app/auth/login", loginData, { withCredentials: true })
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, loginData, { withCredentials: true })
 
 
         const verifyres = await axios.get(`${import.meta.env.VITE_API_URL}/auth/verify`, { withCredentials: true })
