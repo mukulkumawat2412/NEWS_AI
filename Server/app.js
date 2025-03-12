@@ -59,6 +59,8 @@ const fetcthNewsAndStore = async () => {
 
 cron.schedule("*/15 * * * *", fetcthNewsAndStore);
 
+
+
 app.use(express.json());
 app.use(
   cors({
@@ -68,6 +70,11 @@ app.use(
 );
 app.use(cookieParser());
 
+
+app.get("/",(req,res)=>{
+  res.send("Homepage")
+
+})
 app.use("/auth", UserRoute);
 app.use("/api", NewsRoute);
 app.use("/api", AiRoute);
