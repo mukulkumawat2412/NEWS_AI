@@ -155,6 +155,8 @@ export const googleLogin = async(req,res)=>{
         res.cookie('token',token,{
             httpOnly:true,
             maxAge:15*24*60,
+            sameSite:'none',
+            secure:true
     
         })
     

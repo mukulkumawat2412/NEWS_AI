@@ -3,9 +3,10 @@ Server/node_modules
 
 
 
-.env
+Client/.env
+Server/.env
 
 
 
 
-Server/Key/*.json
+
