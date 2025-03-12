@@ -1,2 +1,11 @@
 Client/node_modules
 Server/node_modules
+
+
+
+.env
+
+
+
+
+Server/Key/*.json
