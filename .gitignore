@@ -7,6 +7,6 @@ Client/.env
 Server/.env
 
 
-
+Server/Key/*.json
 
 

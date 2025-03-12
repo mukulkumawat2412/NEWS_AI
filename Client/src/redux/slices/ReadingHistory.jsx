@@ -27,6 +27,7 @@ export const addReadingHistory = createAsyncThunk("/reading-history",async(data,
         
 
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/${id}/reading-history`,data)
+        console.log(res.data)
        return res.data
     } catch (error) {
        return rejectWithValue(error.message)
@@ -47,7 +48,7 @@ export const getReadingHistory = createAsyncThunk("/getreading-history",async(_,
        return res.data
         
     } catch (error) {
-        rejectWithValue(error.message)
+      return  rejectWithValue(error.message)
     }
 
 })
