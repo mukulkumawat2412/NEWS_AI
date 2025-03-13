@@ -93,7 +93,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: "https://news-ai-qydq.vercel.app",
+    origin: "https://news-ai-5iyb.vercel.app",
   })
 );
 app.use(cookieParser());
