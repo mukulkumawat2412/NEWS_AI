@@ -5,7 +5,7 @@ import {getAuth, GoogleAuthProvider} from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAvGV5uz79iUsXULjQOyBYIko-ofxXWcds",
-  authDomain: "news-ai-18294.firebaseapp.com",
+  authDomain: "https://news-ai-dqoh.vercel.app",
   projectId: "news-ai-18294",
   storageBucket: "news-ai-18294.firebasestorage.app",
   messagingSenderId: "1038207878485",
