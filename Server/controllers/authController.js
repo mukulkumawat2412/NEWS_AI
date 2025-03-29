@@ -124,66 +124,54 @@ export const login = async(req,res) => {
 
 
 
-export const googleLogin = async(req,res)=>{
-
+export const googleLogin = async (req, res) => {
     try {
-        const {IdToken} = req.body
-        // console.log(IdToken)
+        const { IdToken } = req.body;
 
-        const decodedToken = await admin.auth().verifyIdToken(IdToken)
-        console.log(decodedToken)
-
-        
-
-
-        const user = await User.findOne({email:decodedToken.email})
-
-        if(!user){
-            const newUser = new User({
-                name:decodedToken.name,
-                email:decodedToken.email,
-               // password:"google-auth"
-            })
-    
-            await newUser.save()
-
+        if (!IdToken) {
+            return res.status(400).json({ error: "IdToken is required" });
         }
 
+        const decodedToken = await admin.auth().verifyIdToken(IdToken);
+        console.log(decodedToken);
 
-        const token = jwt.sign({id:user._id,name:user.name,email:user.email},process.env.JWT_SECRET || "Hello_this_is_string",{expiresIn:"1d"})
+        let user = await User.findOne({ email: decodedToken.email });
 
-        res.cookie('token',token,{
-            httpOnly:true,
-            maxAge:15*24*60,
-            sameSite:'none',
-            secure:true
-    
-        })
-    
+        if (!user) {
+            user = new User({
+                name: decodedToken.name,
+                email: decodedToken.email,
+            });
+            await user.save();
+        }
+
+        const token = jwt.sign(
+            { id: user._id, name: user.name, email: user.email },
+            process.env.JWT_SECRET || "Hello_this_is_string",
+            { expiresIn: "1d" }
+        );
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+            secure: process.env.NODE_ENV === "production",
+        });
+
         res.status(200).json({
-            authenticated:true,
-            id:user._id,
-            email:user.email,
-            name:user.name,
-            preferences:user.preferences || {},
-            message:"Login successful"
-        })
-    
-    
+            authenticated: true,
+            id: user._id,
+            email: user.email,
+            name: user.name,
+            preferences: user.preferences || {},
+            message: "Login successful",
+        });
 
-
-
-
-
-
-
-        
     } catch (error) {
-        
+        console.error("Google Login Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-}
-
-
+};
 
 
 
