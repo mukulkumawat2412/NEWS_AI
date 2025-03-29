@@ -64,7 +64,7 @@ function Login() {
 
 
     useEffect(()=>{
-      if(authenticated && preferences.length > 0){
+      if(authenticated && preferences.length >= 0){
 
         navigate("/")
 
