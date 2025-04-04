@@ -85,7 +85,7 @@ export const login = async(req,res) => {
 
    if(!user){
     res.status(400).json({
-        message:"user is not registerd"
+        message:"user is not registered"
     })
    }
 

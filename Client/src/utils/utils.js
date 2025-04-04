@@ -10,8 +10,8 @@ export const getCookie = (key)=>{
 
 
 export const setCookie = (key,value)=>{
-   return Cookies.set(key,value)
 
+   return Cookies.set(key,value)
 }
 
 

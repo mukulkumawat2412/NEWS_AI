@@ -3,22 +3,24 @@ import jwt from "jsonwebtoken"
 
 
  const verifyToken = (req,res,next)=>{
-   //   console.log(req.headers)
+     console.log(req)
     
     const token = req.cookies.token
    //   console.log(req.cookies.token)
 
     if(!token){
        return res.status(401).json({authenticated:false, message:"No token found"})
+       
     }
 
 
     const decoded = jwt.verify(token,process.env.JWT_SECRET)
 
-   //  console.log(decoded)
+    //console.log(decoded)
 
     req.user = decoded
 
+    console.log(req.user)
 
    //  const req = {
    //    user:{

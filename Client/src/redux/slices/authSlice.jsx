@@ -10,7 +10,7 @@ import { signInWithPopup } from "firebase/auth";
 
 const initialState = {
     loading: false,
-    authenticated: getCookie("isAuthenticated") || false,
+    authenticated: getCookie("isAuthenticated"),
     name: getCookie("name") || null,
     id: getCookie("id") || null,
     preferences: []
